@@ -69,6 +69,10 @@
     "clearFilters": "清除筛选",
     "searchPlaceholder": "搜索..."
   },
+  "lang": {
+    "switchToEn": "Switch to English",
+    "switchToZh": "切换到中文"
+  },
   "menu": {
     "open": "打开菜单",
     "expand": "展开侧边栏",
@@ -155,5 +159,122 @@
       "features": ["Pro 全部功能", "AI Studio 自然语言定制 UI", "实时预览与多预设", "专属个性化工作台"],
       "cta": "升级 Max"
     }
+  },
+  "app": {
+    "loading": "加载中..."
+  },
+  "quickCapture": {
+    "placeholder": "Quick capture · Paste link · Markdown · Or ask AI…",
+    "captured": "已快速收录",
+    "addFailed": "添加失败"
+  },
+  "homeToast": {
+    "selectImage": "请选择图片文件",
+    "imageSaved": "图片已保存",
+    "uploadFailed": "上传失败"
+  },
+  "settings": {
+    "title": "API 密钥配置",
+    "hint": "填入AI的API-key",
+    "baseUrl": "Base URL",
+    "model": "Model",
+    "apiKey": "API Key",
+    "saved": "API 配置已保存（仅存本地）",
+    "resetData": "清空并重置为默认数据",
+    "resetSuccess": "已清空并重置为默认数据"
+  },
+  "upgrade": {
+    "aiTitle": "升级 Pro 解锁 AI 智能问答",
+    "aiDesc": "您已收集了 {{count}} 条知识，升级 Pro 让 AI 帮您真正发挥它们的价值。",
+    "aiFeatures": ["完整 RAG 语义检索", "流式 AI 回答", "引用来源追溯"],
+    "aiStudioTitle": "升级 Max 解锁 AI Studio",
+    "aiStudioDesc": "用自然语言定制您的工作台，AI 实时生成界面配置。",
+    "aiStudioFeatures": ["自然语言调整 UI", "实时预览与保存", "多预设一键切换"],
+    "syncTitle": "升级 Pro 云端同步",
+    "syncDesc": "多端实时访问，永不丢失。",
+    "syncFeatures": ["云端存储", "多设备同步", "数据安全"],
+    "exportTitle": "升级 Pro 导出数据",
+    "exportDesc": "尊重您的数据主权，随时导出。",
+    "exportFeatures": ["Markdown 导出", "PDF 导出", "批量下载"],
+    "graphTitle": "升级 Pro 解锁知识图谱",
+    "graphDesc": "可视化您的知识网络，发现关联。",
+    "graphFeatures": ["力导向图", "标签关联", "智能推荐"],
+    "viewPricing": "查看定价",
+    "later": "稍后再说"
+  },
+  "graph": {
+    "title": "知识图谱",
+    "upgradeHint": "升级 Pro 解锁知识图谱，可视化您的知识网络",
+    "upgradePro": "升级 Pro",
+    "minNotes": "至少需要 2 条笔记才能展示关联图谱",
+    "intro": "笔记按标签关联，节点可拖拽，点击节点查看摘要。共 {{count}} 条笔记。",
+    "summary": "摘要",
+    "edgeLabel": "关联",
+    "legendInput": "顶部圆点：入（Input）· 被引用",
+    "legendOutput": "底部圆点：出（Output）· 引用他人",
+    "legendDrag": "拖拽从「出」→「入」建立自定义关联"
+  },
+  "noteCard": {
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "random": {
+    "title": "随机漫步",
+    "desc": "防吃灰回顾：随机抽取 3 条知识卡片，温故知新",
+    "drawAgain": "🎲 再抽一次",
+    "empty": "暂无笔记，快去记录吧～"
+  },
+  "notePreview": {
+    "hasImage": "含图片"
+  },
+  "export": {
+    "upgradeHint": "升级 Pro 解锁数据导出",
+    "filename": "LightNode笔记导出-{{date}}.md",
+    "success": "已导出 Markdown",
+    "noteHeader": "笔记",
+    "createdLabel": "创建时间: "
+  },
+  "aiqa": {
+    "title": "AI 智能问答",
+    "desc": "基于知识库的 RAG 问答。输入问题后，系统会先检索相关笔记，再生成回答。",
+    "placeholder": "向知识库提问，例如：我记过哪些关于 React 的笔记？",
+    "submit": "提问",
+    "processing": "处理中...",
+    "retrieving": "正在从本地知识库检索相关笔记...",
+    "found": "找到 {{n}} 条相关卡片",
+    "reranking": "正在重排序...",
+    "generating": "正在生成回答...",
+    "answer": "回答",
+    "sources": "引用来源",
+    "generateFailed": "生成失败"
+  },
+  "auth": {
+    "signIn": "登录轻知",
+    "signUp": "注册轻知",
+    "email": "邮箱",
+    "password": "密码",
+    "submitSignIn": "登录",
+    "submitSignUp": "注册",
+    "processing": "处理中...",
+    "toSignUp": "去注册",
+    "toSignIn": "去登录",
+    "googleLogin": "Google 一键登录",
+    "fillEmailPassword": "请填写邮箱和密码",
+    "signUpSuccess": "注册成功，请查收验证邮件",
+    "signInSuccess": "登录成功",
+    "operationFailed": "操作失败",
+    "googleFailed": "Google 登录失败"
+  },
+  "migrate": {
+    "detected": "检测到 {{count}} 条本地笔记，登录后可一键迁移至云端",
+    "hint": "多端同步，永不丢失",
+    "migrate": "迁移",
+    "dismiss": "暂不"
+  },
+  "preset": {
+    "defaultName": "预设 {{n}}"
+  },
+  "error": {
+    "apiKeyRequired": "请先设置api-key"
   }
 }

@@ -1,6 +1,5 @@
 /**
- * 强制注入 3 条完整的默认笔记
- * 包含天气和标准地点格式
+ * 默认 3 条笔记（仅中文）
  */
 export function getSeedNotes() {
   return [

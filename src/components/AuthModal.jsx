@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
 
 export function AuthModal({ onClose, mode = 'signin' }) {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSignUp, setIsSignUp] = useState(mode === 'signup')
@@ -13,21 +15,21 @@ export function AuthModal({ onClose, mode = 'signin' }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (!email.trim() || !password) {
-      toast('请填写邮箱和密码', 'error')
+      toast(t('auth.fillEmailPassword'), 'error')
       return
     }
     setLoading(true)
     try {
       if (isSignUp) {
         await signUp(email, password)
-        toast('注册成功，请查收验证邮件', 'success')
+        toast(t('auth.signUpSuccess'), 'success')
       } else {
         await signIn(email, password)
-        toast('登录成功', 'success')
+        toast(t('auth.signInSuccess'), 'success')
         onClose()
       }
     } catch (err) {
-      toast(err.message || '操作失败', 'error')
+      toast(err.message || t('auth.operationFailed'), 'error')
     } finally {
       setLoading(false)
     }
@@ -39,7 +41,7 @@ export function AuthModal({ onClose, mode = 'signin' }) {
       await signInWithGoogle()
       onClose()
     } catch (err) {
-      toast(err.message || 'Google 登录失败', 'error')
+      toast(err.message || t('auth.googleFailed'), 'error')
     } finally {
       setLoading(false)
     }
@@ -60,11 +62,11 @@ export function AuthModal({ onClose, mode = 'signin' }) {
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-semibold mb-4">
-          {isSignUp ? '注册轻知' : '登录轻知'}
+          {isSignUp ? t('auth.signUp') : t('auth.signIn')}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm mb-1 opacity-80">邮箱</label>
+            <label className="block text-sm mb-1 opacity-80">{t('auth.email')}</label>
             <input
               type="email"
               value={email}
@@ -75,7 +77,7 @@ export function AuthModal({ onClose, mode = 'signin' }) {
             />
           </div>
           <div>
-            <label className="block text-sm mb-1 opacity-80">密码</label>
+            <label className="block text-sm mb-1 opacity-80">{t('auth.password')}</label>
             <input
               type="password"
               value={password}
@@ -92,14 +94,14 @@ export function AuthModal({ onClose, mode = 'signin' }) {
               className="flex-1 px-4 py-2 disabled:opacity-50"
               style={{ backgroundColor: 'var(--accent)', color: '#0f0f0f' }}
             >
-              {loading ? '处理中...' : isSignUp ? '注册' : '登录'}
+              {loading ? t('auth.processing') : isSignUp ? t('auth.submitSignUp') : t('auth.submitSignIn')}
             </button>
             <button
               type="button"
               onClick={() => setIsSignUp(!isSignUp)}
               className="px-4 py-2 opacity-70 hover:opacity-100 text-sm"
             >
-              {isSignUp ? '去登录' : '去注册'}
+              {isSignUp ? t('auth.toSignIn') : t('auth.toSignUp')}
             </button>
           </div>
         </form>
@@ -116,14 +118,14 @@ export function AuthModal({ onClose, mode = 'signin' }) {
               <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
               <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
             </svg>
-            Google 一键登录
+            {t('auth.googleLogin')}
           </button>
         </div>
         <button
           onClick={onClose}
           className="mt-4 w-full py-2 text-sm opacity-60 hover:opacity-100"
         >
-          取消
+          {t('common.cancel')}
         </button>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 const LOCAL_STORAGE_KEY = 'lightnode-notes'
 
 function getLocalNotesCount() {
@@ -11,6 +13,7 @@ function getLocalNotesCount() {
 }
 
 export function MigratePrompt({ onMigrate, onDismiss }) {
+  const { t } = useTranslation()
   const localCount = getLocalNotesCount()
   if (localCount === 0) return null
 
@@ -21,9 +24,9 @@ export function MigratePrompt({ onMigrate, onDismiss }) {
     >
       <div>
         <p className="text-sm font-medium">
-          检测到 {localCount} 条本地笔记，登录后可一键迁移至云端
+          {t('migrate.detected', { count: localCount })}
         </p>
-        <p className="text-xs mt-1 opacity-70">多端同步，永不丢失</p>
+        <p className="text-xs mt-1 opacity-70">{t('migrate.hint')}</p>
       </div>
       <div className="flex gap-2 shrink-0">
         <button
@@ -31,13 +34,13 @@ export function MigratePrompt({ onMigrate, onDismiss }) {
           className="px-3 py-1.5 text-sm"
           style={{ backgroundColor: 'var(--accent)', color: '#0f0f0f' }}
         >
-          迁移
+          {t('migrate.migrate')}
         </button>
         <button
           onClick={onDismiss}
           className="px-3 py-1.5 text-sm opacity-70 hover:opacity-100"
         >
-          暂不
+          {t('migrate.dismiss')}
         </button>
       </div>
     </div>

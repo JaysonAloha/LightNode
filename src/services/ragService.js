@@ -3,6 +3,7 @@
  * Pro 用户：完整链路；Free/游客：Jaccard 模拟 + 生成
  */
 
+import i18n from 'i18next'
 import { supabase } from '../lib/supabase'
 
 const EMBEDDING_MODEL = 'text-embedding-3-small'
@@ -13,7 +14,7 @@ const EMBEDDING_DIM = 1536
 export async function embedText(text) {
   const apiKey = localStorage.getItem('lightnode-api-key')
   const baseUrl = localStorage.getItem('lightnode-api-base') || 'https://api.openai.com/v1'
-  if (!apiKey) throw new Error('请先设置api-key')
+  if (!apiKey) throw new Error(i18n.t('error.apiKeyRequired'))
 
   const res = await fetch(`${baseUrl}/embeddings`, {
     method: 'POST',
@@ -156,7 +157,7 @@ export async function generateAnswer(query, retrievedNotes, { onChunk, onDone })
   const baseUrl = localStorage.getItem('lightnode-api-base') || 'https://api.openai.com/v1'
   const model = localStorage.getItem('lightnode-api-model') || 'Qwen3-MAX'
 
-  if (!apiKey) throw new Error('请先设置api-key')
+  if (!apiKey) throw new Error(i18n.t('error.apiKeyRequired'))
 
   const prompt = buildPrompt(query, retrievedNotes)
 

@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -19,6 +20,7 @@ function getTagsForGraph(note) {
 }
 
 export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
+  const { t } = useTranslation()
   const { notes } = useStorage()
   const { theme } = useTheme()
 
@@ -120,7 +122,7 @@ export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
               id: `edge-${noteList[i].id}-${noteList[j].id}-fallback`,
               source,
               target,
-              label: '关联',
+              label: t('graph.edgeLabel'),
               type: 'default',
               animated: true,
               style: { stroke: '#94a3b8', strokeWidth: 1.5 },
@@ -140,7 +142,7 @@ export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
       initialNodes: nodes,
       initialEdges: edges,
     }
-  }, [notes, theme])
+  }, [notes, theme, t])
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes)
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges)
@@ -183,14 +185,14 @@ export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
   if (!canUseGraph?.()) {
     return (
       <div className="max-w-2xl mx-auto py-12 text-center">
-        <h1 className="text-xl font-semibold mb-4">知识图谱</h1>
-        <p className="mb-6 opacity-80">升级 Pro 解锁知识图谱，可视化您的知识网络</p>
+        <h1 className="text-xl font-semibold mb-4">{t('graph.title')}</h1>
+        <p className="mb-6 opacity-80">{t('graph.upgradeHint')}</p>
         <button
           onClick={() => onUpgrade?.('graph')}
           className="px-6 py-2"
           style={{ backgroundColor: 'var(--accent)', color: '#0f0f0f' }}
         >
-          升级 Pro
+          {t('graph.upgradePro')}
         </button>
       </div>
     )
@@ -199,17 +201,17 @@ export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
   if (notes.length < 2) {
     return (
       <div className="max-w-2xl mx-auto py-12 text-center">
-        <h1 className="text-xl font-semibold mb-4">知识图谱</h1>
-        <p className="text-sm opacity-80">至少需要 2 条笔记才能展示关联图谱</p>
+        <h1 className="text-xl font-semibold mb-4">{t('graph.title')}</h1>
+        <p className="text-sm opacity-80">{t('graph.minNotes')}</p>
       </div>
     )
   }
 
   return (
     <div className="w-full">
-      <h1 className="text-xl font-semibold mb-2">知识图谱</h1>
+      <h1 className="text-xl font-semibold mb-2">{t('graph.title')}</h1>
       <p className="text-sm mb-4 opacity-80">
-        笔记按标签关联，节点可拖拽，点击节点查看摘要。共 {notes.length} 条笔记。
+        {t('graph.intro', { count: notes.length })}
       </p>
       {selectedNote && (
         <div
@@ -221,7 +223,7 @@ export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
           }}
         >
           <p className="text-xs font-mono mb-1" style={{ color: 'var(--accent)' }}>
-            {selectedNote.title || '摘要'}
+            {selectedNote.title || t('graph.summary')}
           </p>
           <p className="text-sm line-clamp-3">{selectedNote.summary}</p>
         </div>
@@ -265,9 +267,9 @@ export function KnowledgeGraph({ canUseGraph, onUpgrade }) {
               ℹ
             </span>
             <div className="text-xs space-y-1.5 min-w-0" style={{ color: 'var(--text-secondary)' }}>
-              <p><span className="inline-block w-2 h-2 rounded-full border border-current opacity-70 align-middle mr-1.5" style={{ borderWidth: 1.5 }} /> 顶部圆点：入（Input）· 被引用</p>
-              <p><span className="inline-block w-2 h-2 rounded-full border border-current opacity-70 align-middle mr-1.5" style={{ borderWidth: 1.5 }} /> 底部圆点：出（Output）· 引用他人</p>
-              <p className="pt-0.5 opacity-90">拖拽从「出」→「入」建立自定义关联</p>
+              <p><span className="inline-block w-2 h-2 rounded-full border border-current opacity-70 align-middle mr-1.5" style={{ borderWidth: 1.5 }} /> {t('graph.legendInput')}</p>
+              <p><span className="inline-block w-2 h-2 rounded-full border border-current opacity-70 align-middle mr-1.5" style={{ borderWidth: 1.5 }} /> {t('graph.legendOutput')}</p>
+              <p className="pt-0.5 opacity-90">{t('graph.legendDrag')}</p>
             </div>
           </div>
         </div>

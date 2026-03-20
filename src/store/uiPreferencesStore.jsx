@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback, useEffect } from 'react'
+import i18n from 'i18next'
 import { normalizeUiConfig, mergeUiConfig } from '../utils/uiConfigNormalizer'
 import { DEFAULT_UI_CONFIG } from '../types/ui-config'
 
@@ -92,7 +93,7 @@ export function UiPreferencesProvider({ children }) {
   const savePreset = useCallback((name) => {
     const preset = {
       id: crypto.randomUUID(),
-      name: name || `预设 ${presets.length + 1}`,
+      name: name || i18n.t('preset.defaultName', { n: presets.length + 1 }),
       config: { ...config },
       createdAt: new Date().toISOString(),
     }

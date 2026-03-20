@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useStorage } from '../context/StorageContext'
 import { useToast } from '../context/ToastContext'
 
 export function QuickCapture({ canAddNote = true, onUpgrade }) {
+  const { t } = useTranslation()
   const [value, setValue] = useState('')
   const { addNote, notes } = useStorage()
   const { toast } = useToast()
@@ -18,9 +20,9 @@ export function QuickCapture({ canAddNote = true, onUpgrade }) {
     try {
       await addNote(trimmed)
       setValue('')
-      toast('已快速收录', 'success')
+      toast(t('quickCapture.captured'), 'success')
     } catch (err) {
-      toast(err.message || '添加失败', 'error')
+      toast(err.message || t('quickCapture.addFailed'), 'error')
     }
   }
 
@@ -30,7 +32,7 @@ export function QuickCapture({ canAddNote = true, onUpgrade }) {
         type="text"
         value={value}
         onChange={e => setValue(e.target.value)}
-        placeholder="Quick capture · Paste link · Markdown · Or ask AI…"
+        placeholder={t('home.placeholder')}
         className="w-full px-4 py-2.5 bg-transparent border text-sm font-mono placeholder-opacity-40 focus:outline-none input-glow"
         style={{
           borderColor: 'var(--border-default)',

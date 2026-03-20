@@ -1,3 +1,4 @@
+import i18n from 'i18next'
 import { validateUiConfig } from '../../utils/uiConfigValidator'
 import { mockChat } from './mockAiStudioProvider'
 import { buildUserPrompt, buildOutputFormatInstruction, SYSTEM_PROMPT } from './promptBuilders'
@@ -40,7 +41,7 @@ export async function chatWithAI(userMessage, currentConfig, { onChunk, onDone }
   const hasApiKey = !!localStorage.getItem('lightnode-api-key')
 
   if (!hasApiKey) {
-    throw new Error('请先设置api-key')
+    throw new Error(i18n.t('error.apiKeyRequired'))
   }
 
   const baseUrl = localStorage.getItem('lightnode-api-base') || 'https://api.openai.com/v1'

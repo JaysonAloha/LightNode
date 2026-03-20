@@ -199,6 +199,7 @@ function AIStudioLayout() {
 }
 
 function AppContent() {
+  const { t } = useTranslation()
   const { user, profile, loading } = useAuth()
   const tier = profile?.subscription_tier || 'max'
 
@@ -208,7 +209,7 @@ function AppContent() {
         className="min-h-screen flex items-center justify-center"
         style={{ color: 'var(--text-secondary)' }}
       >
-        加载中...
+        {t('app.loading')}
       </div>
     )
   }

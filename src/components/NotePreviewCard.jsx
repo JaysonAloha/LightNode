@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useTheme } from '../context/ThemeContext'
 
 function getTitle(note) {
@@ -23,6 +24,7 @@ function getTags(note) {
 }
 
 export function NotePreviewCard({ note, onClick }) {
+  const { t } = useTranslation()
   const { theme } = useTheme()
   const isCozy = theme === 'cozy'
 
@@ -30,7 +32,8 @@ export function NotePreviewCard({ note, onClick }) {
   const summary = extractSummary(note)
   const tags = getTags(note)
   const showImageIcon = hasImageBlock(note)
-  const date = new Date(note.created_at || note.createdAt).toLocaleDateString('zh-CN', {
+  const locale = typeof navigator !== 'undefined' ? navigator.language : 'zh-CN'
+  const date = new Date(note.created_at || note.createdAt).toLocaleDateString(locale.startsWith('zh') ? 'zh-CN' : 'en-US', {
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
@@ -59,7 +62,7 @@ export function NotePreviewCard({ note, onClick }) {
         </h3>
         <div className="flex items-center gap-1 shrink-0">
           {showImageIcon && (
-            <span className="text-[10px] opacity-70" title="含图片">🖼</span>
+            <span className="text-[10px] opacity-70" title={t('notePreview.hasImage')}>🖼</span>
           )}
           <span
             className="text-[10px] font-mono"

@@ -9,20 +9,20 @@ export function ExportButton({ canExport, onUpgrade }) {
 
   const handleExport = () => {
     if (!canExport?.()) {
-      onUpgrade ? onUpgrade() : toast('升级 Pro 解锁数据导出', 'info')
+      onUpgrade ? onUpgrade() : toast(t('export.upgradeHint'), 'info')
       return
     }
     const content = notes
-      .map((n) => `# 笔记\n\n${n.content}\n\n---\n创建时间: ${n.created_at || n.createdAt}\n`)
+      .map((n) => `# ${t('export.noteHeader')}\n\n${n.content}\n\n---\n${t('export.createdLabel')}${n.created_at || n.createdAt}\n`)
       .join('\n')
     const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = `轻知笔记导出-${new Date().toISOString().slice(0, 10)}.md`
+    a.download = t('export.filename', { date: new Date().toISOString().slice(0, 10) })
     a.click()
     URL.revokeObjectURL(url)
-    toast('已导出 Markdown', 'success')
+    toast(t('export.success'), 'success')
   }
 
   return (

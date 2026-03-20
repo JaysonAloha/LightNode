@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { changeLanguage } from '../i18n'
 
 export function LanguageToggle() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const handleClick = () => {
     const next = i18n.language === 'zh' ? 'en' : 'zh'
@@ -13,7 +13,7 @@ export function LanguageToggle() {
     <button
       onClick={handleClick}
       className="header-action"
-      title={i18n.language === 'zh' ? 'Switch to English' : '切换到中文'}
+      title={i18n.language === 'zh' ? t('lang.switchToEn') : t('lang.switchToZh')}
     >
       {i18n.language === 'zh' ? 'EN' : '中'}
     </button>

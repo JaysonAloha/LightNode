@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import ReactMarkdown from 'react-markdown'
 import { useStorage } from '../context/StorageContext'
 import { useTheme } from '../context/ThemeContext'
 
 export function NoteCard({ note, compact = false, onSelect }) {
+  const { t } = useTranslation()
   const [editing, setEditing] = useState(false)
   const [editContent, setEditContent] = useState(note.content)
   const { updateNote, deleteNote } = useStorage()
@@ -18,7 +20,8 @@ export function NoteCard({ note, compact = false, onSelect }) {
     setEditing(false)
   }
 
-  const date = new Date(note.created_at || note.createdAt).toLocaleString('zh-CN', {
+  const locale = typeof navigator !== 'undefined' ? navigator.language : 'zh-CN'
+  const date = new Date(note.created_at || note.createdAt).toLocaleString(locale.startsWith('zh') ? 'zh-CN' : 'en-US', {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -57,8 +60,8 @@ export function NoteCard({ note, compact = false, onSelect }) {
           autoFocus
         />
         <div className="flex justify-end gap-2 mt-2">
-          <button onClick={() => setEditing(false)} className="text-sm opacity-70">取消</button>
-          <button onClick={handleSave} className="text-sm" style={{ color: 'var(--accent)' }}>保存</button>
+          <button onClick={() => setEditing(false)} className="text-sm opacity-70">{t('common.cancel')}</button>
+          <button onClick={handleSave} className="text-sm" style={{ color: 'var(--accent)' }}>{t('common.save')}</button>
         </div>
       </div>
     )
@@ -77,8 +80,8 @@ export function NoteCard({ note, compact = false, onSelect }) {
       <div className="flex justify-between items-start gap-2">
         <p className="text-xs font-mono opacity-60">{date}</p>
         <div className="flex gap-2 shrink-0">
-          <button onClick={() => setEditing(true)} className="text-xs opacity-60 hover:opacity-100 transition-opacity">编辑</button>
-          <button onClick={() => deleteNote(note.id)} className="text-xs opacity-60 hover:opacity-100 text-red-400 transition-opacity">删除</button>
+          <button onClick={() => setEditing(true)} className="text-xs opacity-60 hover:opacity-100 transition-opacity">{t('noteCard.edit')}</button>
+          <button onClick={() => deleteNote(note.id)} className="text-xs opacity-60 hover:opacity-100 text-red-400 transition-opacity">{t('noteCard.delete')}</button>
         </div>
       </div>
       {locationWeatherLine && (

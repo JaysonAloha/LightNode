@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useToast } from '../context/ToastContext'
 import { useTheme } from '../context/ThemeContext'
 import { useStorage } from '../context/StorageContext'
@@ -14,6 +15,7 @@ export function setApiKey(key) {
 }
 
 export function SettingsModal({ onClose }) {
+  const { t } = useTranslation()
   const [apiKey, setApiKeyState] = useState('')
   const [baseUrl, setBaseUrl] = useState('')
   const [model, setModel] = useState('Qwen3-MAX')
@@ -31,7 +33,7 @@ export function SettingsModal({ onClose }) {
     setApiKey(apiKey)
     localStorage.setItem('lightnode-api-base', baseUrl)
     localStorage.setItem('lightnode-api-model', model)
-    toast('API 配置已保存（仅存本地）', 'success')
+    toast(t('settings.saved'), 'success')
     onClose()
   }
 
@@ -42,13 +44,13 @@ export function SettingsModal({ onClose }) {
         style={{ backgroundColor: 'var(--bg-card)', color: 'var(--text-primary)' }}
         onClick={e => e.stopPropagation()}
       >
-        <h2 className="text-lg font-semibold mb-4">API 密钥配置</h2>
+        <h2 className="text-lg font-semibold mb-4">{t('settings.title')}</h2>
         <p className="text-sm mb-4 opacity-80">
-          填入AI的API-key
+          {t('settings.hint')}
         </p>
         <div className="space-y-4">
           <div>
-            <label className="block text-sm mb-1">Base URL</label>
+            <label className="block text-sm mb-1">{t('settings.baseUrl')}</label>
             <input
               type="text"
               value={baseUrl}
@@ -59,7 +61,7 @@ export function SettingsModal({ onClose }) {
             />
           </div>
           <div>
-            <label className="block text-sm mb-1">Model</label>
+            <label className="block text-sm mb-1">{t('settings.model')}</label>
             <input
               type="text"
               value={model}
@@ -70,7 +72,7 @@ export function SettingsModal({ onClose }) {
             />
           </div>
           <div>
-            <label className="block text-sm mb-1">API Key</label>
+            <label className="block text-sm mb-1">{t('settings.apiKey')}</label>
             <input
               type="password"
               value={apiKey}
@@ -86,26 +88,26 @@ export function SettingsModal({ onClose }) {
             <button
               onClick={() => {
                 resetAndReseed()
-                toast('已清空并重置为默认数据', 'success')
+                toast(t('settings.resetSuccess'), 'success')
                 onClose()
               }}
               className="px-4 py-2 text-sm opacity-80 hover:opacity-100"
               style={{ color: 'var(--text-secondary)' }}
             >
-              清空并重置为默认数据
+              {t('settings.resetData')}
             </button>
           </div>
         )}
         <div className="flex justify-end gap-2 mt-6">
           <button onClick={onClose} className="px-4 py-2 opacity-70 hover:opacity-100">
-            取消
+            {t('common.cancel')}
           </button>
           <button
             onClick={handleSave}
             className="px-4 py-2"
             style={{ backgroundColor: 'var(--accent)', color: '#0f0f0f' }}
           >
-            保存
+            {t('common.save')}
           </button>
         </div>
       </div>

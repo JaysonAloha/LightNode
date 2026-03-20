@@ -69,6 +69,10 @@
     "clearFilters": "Clear filters",
     "searchPlaceholder": "Search..."
   },
+  "lang": {
+    "switchToEn": "Switch to English",
+    "switchToZh": "Switch to Chinese"
+  },
   "menu": {
     "open": "Open menu",
     "expand": "Expand sidebar",
@@ -155,5 +159,122 @@
       "features": ["All Pro features", "AI Studio natural language UI", "Live preview & presets", "Personalized workspace"],
       "cta": "Upgrade to Max"
     }
+  },
+  "app": {
+    "loading": "Loading..."
+  },
+  "quickCapture": {
+    "placeholder": "Quick capture · Paste link · Markdown · Or ask AI…",
+    "captured": "Captured",
+    "addFailed": "Add failed"
+  },
+  "homeToast": {
+    "selectImage": "Please select image files",
+    "imageSaved": "Image saved",
+    "uploadFailed": "Upload failed"
+  },
+  "settings": {
+    "title": "API Key Configuration",
+    "hint": "Enter your AI API key",
+    "baseUrl": "Base URL",
+    "model": "Model",
+    "apiKey": "API Key",
+    "saved": "API config saved (local only)",
+    "resetData": "Clear and reset to default data",
+    "resetSuccess": "Data cleared and reset to default"
+  },
+  "upgrade": {
+    "aiTitle": "Upgrade to Pro for AI Q&A",
+    "aiDesc": "You have {{count}} notes. Upgrade to Pro and let AI help you get more value from them.",
+    "aiFeatures": ["Full RAG semantic search", "Streaming AI answers", "Source attribution"],
+    "aiStudioTitle": "Upgrade to Max for AI Studio",
+    "aiStudioDesc": "Customize your workspace with natural language. AI generates UI config in real-time.",
+    "aiStudioFeatures": ["Natural language UI adjustment", "Live preview & save", "One-click preset switch"],
+    "syncTitle": "Upgrade to Pro for cloud sync",
+    "syncDesc": "Access from any device, never lose data.",
+    "syncFeatures": ["Cloud storage", "Multi-device sync", "Data security"],
+    "exportTitle": "Upgrade to Pro to export data",
+    "exportDesc": "Your data, your control. Export anytime.",
+    "exportFeatures": ["Markdown export", "PDF export", "Batch download"],
+    "graphTitle": "Upgrade to Pro for knowledge graph",
+    "graphDesc": "Visualize your knowledge network and discover connections.",
+    "graphFeatures": ["Force-directed graph", "Tag associations", "Smart recommendations"],
+    "viewPricing": "View pricing",
+    "later": "Maybe later"
+  },
+  "graph": {
+    "title": "Knowledge Graph",
+    "upgradeHint": "Upgrade to Pro to unlock the knowledge graph and visualize your network",
+    "upgradePro": "Upgrade to Pro",
+    "minNotes": "At least 2 notes required to display the graph",
+    "intro": "Notes linked by tags. Drag nodes, click to view summary. {{count}} notes total.",
+    "summary": "Summary",
+    "edgeLabel": "Related",
+    "legendInput": "Top dot: Input · referenced by",
+    "legendOutput": "Bottom dot: Output · references",
+    "legendDrag": "Drag from Output → Input to create custom links"
+  },
+  "noteCard": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "random": {
+    "title": "Random Walk",
+    "desc": "Anti-dust review: randomly pick 3 knowledge cards to revisit",
+    "drawAgain": "🎲 Draw again",
+    "empty": "No notes yet. Start capturing!"
+  },
+  "notePreview": {
+    "hasImage": "Contains image"
+  },
+  "export": {
+    "upgradeHint": "Upgrade to Pro to export data",
+    "filename": "LightNode-export-{{date}}.md",
+    "success": "Exported as Markdown",
+    "noteHeader": "Note",
+    "createdLabel": "Created: "
+  },
+  "aiqa": {
+    "title": "AI Q&A",
+    "desc": "RAG-based Q&A from your knowledge base. Enter a question to retrieve relevant notes and generate an answer.",
+    "placeholder": "Ask your knowledge base, e.g. What notes do I have about React?",
+    "submit": "Ask",
+    "processing": "Processing...",
+    "retrieving": "Searching your knowledge base...",
+    "found": "Found {{n}} relevant cards",
+    "reranking": "Reranking...",
+    "generating": "Generating answer...",
+    "answer": "Answer",
+    "sources": "Sources",
+    "generateFailed": "Generation failed"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "submitSignIn": "Sign in",
+    "submitSignUp": "Sign up",
+    "processing": "Processing...",
+    "toSignUp": "Sign up",
+    "toSignIn": "Sign in",
+    "googleLogin": "Sign in with Google",
+    "fillEmailPassword": "Please enter email and password",
+    "signUpSuccess": "Signed up! Please check your email to verify.",
+    "signInSuccess": "Signed in successfully",
+    "operationFailed": "Operation failed",
+    "googleFailed": "Google sign-in failed"
+  },
+  "migrate": {
+    "detected": "{{count}} local notes detected. Sign in to migrate to cloud",
+    "hint": "Sync across devices, never lose data",
+    "migrate": "Migrate",
+    "dismiss": "Not now"
+  },
+  "preset": {
+    "defaultName": "Preset {{n}}"
+  },
+  "error": {
+    "apiKeyRequired": "Please set api-key first"
   }
 }

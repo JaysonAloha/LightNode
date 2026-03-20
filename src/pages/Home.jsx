@@ -52,7 +52,7 @@ export function Home({
     if (!files?.length) return
     for (const file of files) {
       if (!file.type.startsWith('image/')) {
-        toast('请选择图片文件', 'error')
+        toast(t('homeToast.selectImage'), 'error')
         continue
       }
       try {
@@ -72,9 +72,9 @@ export function Home({
           }],
           hasImage: true,
         })
-        toast('图片已保存', 'success')
+        toast(t('homeToast.imageSaved'), 'success')
       } catch (err) {
-        toast(err.message || '上传失败', 'error')
+        toast(err.message || t('homeToast.uploadFailed'), 'error')
       }
     }
     e.target.value = ''
