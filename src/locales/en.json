@@ -225,7 +225,8 @@
     "empty": "No notes yet. Start capturing!"
   },
   "notePreview": {
-    "hasImage": "Contains image"
+    "hasImage": "Contains image",
+    "imageTitle": "Image"
   },
   "export": {
     "upgradeHint": "Upgrade to Pro to export data",

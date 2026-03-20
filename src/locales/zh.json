@@ -225,7 +225,8 @@
     "empty": "暂无笔记，快去记录吧～"
   },
   "notePreview": {
-    "hasImage": "含图片"
+    "hasImage": "含图片",
+    "imageTitle": "图片"
   },
   "export": {
     "upgradeHint": "升级 Pro 解锁数据导出",

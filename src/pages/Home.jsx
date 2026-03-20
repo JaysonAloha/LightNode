@@ -1,7 +1,6 @@
 import { useMemo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useStorage } from '../context/StorageContext'
-import { useToast } from '../context/ToastContext'
 import { HeroCenterInput } from '../components/HeroCenterInput'
 import { NotePreviewCard } from '../components/NotePreviewCard'
 import { SectionHeader } from '../components/SectionHeader'
@@ -14,9 +13,8 @@ export function Home({
   canUseAI,
 }) {
   const { t } = useTranslation()
-  const { notes, addNote } = useStorage()
-  const { toast } = useToast()
-  const fileInputRef = useRef(null)
+  const { notes } = useStorage()
+  const heroInputRef = useRef(null)
   const recent = notes.slice(0, 6)
 
   const { allTags, tagCount, thisWeekCount } = useMemo(() => {
@@ -44,40 +42,7 @@ export function Home({
       onUpgrade?.()
       return
     }
-    fileInputRef.current?.click()
-  }
-
-  const handleFileChange = async (e) => {
-    const files = e.target.files
-    if (!files?.length) return
-    for (const file of files) {
-      if (!file.type.startsWith('image/')) {
-        toast(t('homeToast.selectImage'), 'error')
-        continue
-      }
-      try {
-        const dataUrl = await new Promise((resolve, reject) => {
-          const r = new FileReader()
-          r.onload = () => resolve(r.result)
-          r.onerror = reject
-          r.readAsDataURL(file)
-        })
-        await addNote('[图片]', {
-          blocks: [{
-            type: 'image',
-            id: crypto.randomUUID(),
-            url: dataUrl,
-            caption: file.name,
-            createdAt: new Date().toISOString(),
-          }],
-          hasImage: true,
-        })
-        toast(t('homeToast.imageSaved'), 'success')
-      } catch (err) {
-        toast(err.message || t('homeToast.uploadFailed'), 'error')
-      }
-    }
-    e.target.value = ''
+    heroInputRef.current?.triggerFileSelect?.()
   }
 
   const oldNote = useMemo(() => {
@@ -108,7 +73,7 @@ export function Home({
         </p>
 
         <div className="mb-8">
-          <HeroCenterInput canAddNote={canAddNote} onUpgrade={onUpgrade} />
+          <HeroCenterInput ref={heroInputRef} canAddNote={canAddNote} onUpgrade={onUpgrade} />
         </div>
 
         {/* 快捷操作 */}
@@ -117,14 +82,6 @@ export function Home({
             label={t('home.newNote')}
             onClick={() => onNavigate?.('notes')}
             icon="+"
-          />
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            multiple
-            className="hidden"
-            onChange={handleFileChange}
           />
           <QuickActionButton
             label={t('home.uploadImage')}

@@ -1,15 +1,25 @@
 import { useTranslation } from 'react-i18next'
 import { useTheme } from '../context/ThemeContext'
 
-function getTitle(note) {
+function getFirstImage(note) {
+  const block = note.blocks?.find((b) => b.type === 'image')
+  return block?.url ? block : null
+}
+
+function getTitle(note, imageTitleFallback) {
   if (note.title) return note.title
+  const img = getFirstImage(note)
+  if (img) return img.caption || imageTitleFallback || imageTitleFallback
   const firstLine = (note.content || '').split('\n')[0]?.trim() || ''
+  if (firstLine === '[图片]') return imageTitleFallback
   return firstLine.slice(0, 60) + (firstLine.length > 60 ? '…' : '')
 }
 
 function extractSummary(note) {
   if (note.metadata?.summary || note.summary) return note.metadata?.summary || note.summary
+  if (hasImageBlock(note) && (note.content || '').trim() === '[图片]') return null
   const content = (note.content || '').replace(/#{1,6}\s/g, '').replace(/\n/g, ' ').trim()
+  if (!content) return null
   return content.slice(0, 80) + (content.length > 80 ? '…' : '')
 }
 
@@ -28,10 +38,11 @@ export function NotePreviewCard({ note, onClick }) {
   const { theme } = useTheme()
   const isCozy = theme === 'cozy'
 
-  const title = getTitle(note)
+  const title = getTitle(note, t('notePreview.imageTitle'))
   const summary = extractSummary(note)
   const tags = getTags(note)
   const showImageIcon = hasImageBlock(note)
+  const firstImage = getFirstImage(note)
   const locale = typeof navigator !== 'undefined' ? navigator.language : 'zh-CN'
   const date = new Date(note.created_at || note.createdAt).toLocaleDateString(locale.startsWith('zh') ? 'zh-CN' : 'en-US', {
     month: 'short',
@@ -72,6 +83,15 @@ export function NotePreviewCard({ note, onClick }) {
           </span>
         </div>
       </div>
+      {firstImage && (
+        <div className="mb-2 rounded overflow-hidden" style={{ maxHeight: 120 }}>
+          <img
+            src={firstImage.url}
+            alt={firstImage.caption || '图片'}
+            className="w-full h-auto object-cover object-center"
+          />
+        </div>
+      )}
       {summary && (
         <p
           className="text-xs line-clamp-2 mb-2"

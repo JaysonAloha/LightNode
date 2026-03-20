@@ -89,14 +89,28 @@ export function NoteCard({ note, compact = false, onSelect }) {
           {locationWeatherLine}
         </p>
       )}
-      {note.title && (
+      {(note.title || (note.blocks?.some((b) => b.type === 'image') && (note.content || '').trim() === '[图片]')) && (
         <h3 className="mt-2 text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
-          {note.title}
+          {note.title || note.blocks?.find((b) => b.type === 'image')?.caption || t('notePreview.imageTitle')}
         </h3>
       )}
-      <div className={`prose prose-sm max-w-none dark:prose-invert ${note.title ? 'mt-1' : 'mt-2'}`} style={{ color: 'var(--text-primary)' }}>
-        <ReactMarkdown>{note.content}</ReactMarkdown>
-      </div>
+      {note.blocks?.filter((b) => b.type === 'image').map((b) => (
+        <div key={b.id || b.url} className={`rounded overflow-hidden ${note.title ? 'mt-1' : 'mt-2'}`}>
+          <img
+            src={b.url}
+            alt={b.caption || '图片'}
+            className="w-full max-h-64 object-contain bg-black/5"
+          />
+          {b.caption && (
+            <p className="text-[10px] font-mono mt-1 opacity-70" style={{ color: 'var(--text-muted)' }}>{b.caption}</p>
+          )}
+        </div>
+      ))}
+      {note.content && note.content.trim() !== '[图片]' && (
+        <div className={`prose prose-sm max-w-none dark:prose-invert ${(note.title || note.blocks?.length) ? 'mt-1' : 'mt-2'}`} style={{ color: 'var(--text-primary)' }}>
+          <ReactMarkdown>{note.content}</ReactMarkdown>
+        </div>
+      )}
       {tags.length > 0 && (
         <div className="mt-3 flex flex-wrap items-center gap-2">
           {tags.map((t) => (

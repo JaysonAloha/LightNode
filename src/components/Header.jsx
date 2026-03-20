@@ -4,6 +4,7 @@ import { LanguageToggle } from './LanguageToggle'
 import { ExportButton } from './ExportButton'
 export function Header({
   page,
+  onOpenSidebar,
   onOpenSettings,
   onOpenAuth,
   user,
@@ -20,6 +21,15 @@ export function Header({
         backgroundColor: 'var(--bg-sidebar)',
       }}
     >
+      {onOpenSidebar && (
+        <button
+          onClick={onOpenSidebar}
+          className="md:hidden p-2 -ml-2 rounded opacity-70 hover:opacity-100 transition-opacity shrink-0"
+          aria-label={t('menu.open')}
+        >
+          <span className="text-lg font-mono">☰</span>
+        </button>
+      )}
       <div className="flex-1 min-w-0" />
       <div className="flex items-center gap-1 sm:gap-2 shrink-0">
         <LanguageToggle />

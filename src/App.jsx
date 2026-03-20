@@ -112,6 +112,7 @@ function AppLayout() {
       <main className="flex-1 flex flex-col min-w-0 min-h-screen">
         <Header
           page={page}
+          onOpenSidebar={toggleMobile}
           onOpenSettings={() => setShowSettings(true)}
           onOpenAuth={() => setShowAuth(true)}
           user={user}
