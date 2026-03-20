@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== 默认主题 Default ========== */
+:root,
+[data-theme="default"] {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --font-main: var(--font-sans);
+
+  --bg-app: #ffffff;
+  --bg-sidebar: #f8fafc;
+  --bg-panel: #ffffff;
+  --bg-panel-hover: #f1f5f9;
+  --bg-input: #f8fafc;
+  --bg-card: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --border-default: #e2e8f0;
+  --border-strong: #cbd5e1;
+
+  --accent: #2563eb;
+  --accent-secondary: #1d4ed8;
+  --accent-focus: #3b82f6;
+  --accent-soft-bg: rgba(37, 99, 235, 0.08);
+  --accent-soft-glow: rgba(37, 99, 235, 0.15);
+
+  --radius: 6px;
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+}
+
+/* ========== 温馨主题 Cozy ========== */
+[data-theme="cozy"] {
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+  --font-main: 'Noto Serif SC', Georgia, serif;
+
+  --bg-app: #fffbeb;
+  --bg-sidebar: #fef3c7;
+  --bg-panel: #ffffff;
+  --bg-panel-hover: #fef9c3;
+  --bg-input: #fffbeb;
+  --bg-card: #ffffff;
+
+  --text-primary: #78350f;
+  --text-secondary: #92400e;
+  --text-muted: #a16207;
+
+  --border-default: #fde68a;
+  --border-strong: #fcd34d;
+
+  --accent: #d97706;
+  --accent-secondary: #b45309;
+  --accent-focus: #ea580c;
+  --accent-soft-bg: rgba(217, 119, 6, 0.1);
+  --accent-soft-glow: rgba(217, 119, 6, 0.2);
+
+  --radius: 0.75rem;
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+}
+
+[data-theme="cozy"] .glass {
+  background: rgba(255, 251, 235, 0.9);
+  backdrop-filter: blur(12px);
+}
+
+[data-theme="cozy"] input,
+[data-theme="cozy"] textarea {
+  border-radius: var(--radius);
+}
+
+[data-theme="cozy"] button {
+  border-radius: 0.5rem;
+}
+
+/* ========== 深色主题 Dark ========== */
+[data-theme="dark"] {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  --font-main: var(--font-mono);
+
+  --bg-app: #0B0D12;
+  --bg-sidebar: #111318;
+  --bg-panel: #151922;
+  --bg-panel-hover: #1A1F2B;
+  --bg-input: #0D1324;
+  --bg-card: #151922;
+
+  --text-primary: #E8E6E3;
+  --text-secondary: #A8A29E;
+  --text-muted: #78716C;
+
+  --border-default: #2A2F3A;
+  --border-strong: #3D4451;
+
+  --accent: #D4A017;
+  --accent-secondary: #C68A12;
+  --accent-focus: #E0B84F;
+  --accent-soft-bg: rgba(212, 160, 23, 0.12);
+  --accent-soft-glow: rgba(212, 160, 23, 0.22);
+
+  --radius: 4px;
+  --transition-fast: 150ms ease;
+  --transition-normal: 200ms ease;
+}
+
+/* 兼容旧变量名 */
+[data-theme="default"],
+[data-theme="cozy"],
+[data-theme="dark"] {
+  --bg-primary: var(--bg-app);
+  --bg-secondary: var(--bg-sidebar);
+  --border-color: var(--border-default);
+}
+[data-theme="cozy"] { --bg-card: #ffffff; }
+
+html, body, #root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 导航激活 */
+[data-theme="default"] .nav-item-active,
+[data-theme="cozy"] .nav-item-active,
+[data-theme="dark"] .nav-item-active {
+  border-left: 3px solid var(--accent);
+  background-color: var(--bg-panel);
+  color: var(--text-primary);
+}
+
+[data-theme="default"] .nav-item:hover,
+[data-theme="cozy"] .nav-item:hover,
+[data-theme="dark"] .nav-item:hover {
+  background-color: var(--bg-panel-hover);
+}
+
+/* 卡片 */
+[data-theme="default"] .card-panel,
+[data-theme="cozy"] .card-panel,
+[data-theme="dark"] .card-panel {
+  border: 1px solid var(--border-default);
+  background: var(--bg-panel);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+[data-theme="default"] .card-panel:hover,
+[data-theme="cozy"] .card-panel:hover,
+[data-theme="dark"] .card-panel:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 0 1px var(--accent-soft-glow);
+}
+
+[data-theme="cozy"] .card-panel {
+  border-radius: var(--radius);
+}
+[data-theme="cozy"] .card-panel:hover {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* 主输入框 focus */
+[data-theme="default"] .hero-input:focus-within,
+[data-theme="cozy"] .hero-input:focus-within,
+[data-theme="dark"] .hero-input:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-focus), 0 0 20px var(--accent-soft-glow);
+}
+
+/* 顶部栏操作按钮 */
+.header-action {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  padding: 0.375rem 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  transition: opacity 150ms ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.header-action:hover {
+  opacity: 1;
+}
+
+/* 知识图谱节点 Handle 视觉强化 */
+.react-flow__handle {
+  width: 10px !important;
+  height: 10px !important;
+  border: 1.5px solid var(--border-strong) !important;
+  background: var(--bg-panel) !important;
+}
+.react-flow__handle:hover {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* 标签 token */
+.tag-token {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
