@@ -122,5 +122,38 @@
     "widgetWeather": "Weather",
     "mapPlaceholder": "Map placeholder",
     "backHome": "← Back to home"
+  },
+  "pricing": {
+    "title": "Pricing",
+    "subtitle": "Choose the plan that fits you",
+    "backHome": "← Back to home",
+    "free": {
+      "name": "Free",
+      "period": "Forever free",
+      "desc": "For light usage",
+      "features": ["Up to 50 notes", "Keyword search", "Local storage", "Dual themes"],
+      "cta": "Current plan"
+    },
+    "pro": {
+      "name": "Pro",
+      "period": "/month",
+      "desc": "Best for personal knowledge management",
+      "features": ["Unlimited notes", "Full RAG AI Q&A", "Cloud sync", "Export (Markdown/PDF)", "Knowledge graph"],
+      "cta": "Upgrade to Pro"
+    },
+    "team": {
+      "name": "Team",
+      "period": "/user/month",
+      "desc": "Team collaboration",
+      "features": ["All Pro features", "Shared knowledge base", "Collaborative editing", "Admin controls"],
+      "cta": "Contact sales"
+    },
+    "max": {
+      "name": "Max",
+      "period": "/month",
+      "desc": "AI co-creation workspace",
+      "features": ["All Pro features", "AI Studio natural language UI", "Live preview & presets", "Personalized workspace"],
+      "cta": "Upgrade to Max"
+    }
   }
 }

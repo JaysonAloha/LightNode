@@ -122,5 +122,38 @@
     "widgetWeather": "天气",
     "mapPlaceholder": "地图占位",
     "backHome": "← 返回首页"
+  },
+  "pricing": {
+    "title": "轻知定价",
+    "subtitle": "选择适合您的方案",
+    "backHome": "← 返回首页",
+    "free": {
+      "name": "Free",
+      "period": "永久免费",
+      "desc": "适合轻度使用",
+      "features": ["最多 50 条笔记", "关键词搜索", "本地存储", "双主题"],
+      "cta": "当前方案"
+    },
+    "pro": {
+      "name": "Pro",
+      "period": "/月",
+      "desc": "个人知识管理首选",
+      "features": ["无限笔记", "完整 RAG AI 问答", "云端同步", "数据导出 (Markdown/PDF)", "知识图谱"],
+      "cta": "升级 Pro"
+    },
+    "team": {
+      "name": "Team",
+      "period": "/人/月",
+      "desc": "团队协作",
+      "features": ["Pro 全部功能", "共享知识库", "团队协同编辑", "管理员权限"],
+      "cta": "联系销售"
+    },
+    "max": {
+      "name": "Max",
+      "period": "/月",
+      "desc": "AI 共创工作台",
+      "features": ["Pro 全部功能", "AI Studio 自然语言定制 UI", "实时预览与多预设", "专属个性化工作台"],
+      "cta": "升级 Max"
+    }
   }
 }
